@@ -52,5 +52,23 @@ func TestFunc_async_Deadline(t *testing.T) {
 		t.FailNow()
 	}
 
+}
 
+func TestFunc_async_cancel(t *testing.T) {
+	method := func() *int {
+		num := 2
+		return &num
+	}
+
+	future := async.Exec(func() {
+		method()
+		time.Sleep(time.Second)
+	})
+
+	ctx, cancel := context.WithCancel(context.Background())
+	cancel()
+	if err := future.Await(ctx); err != context.Canceled {
+		t.Log("Should be canceled")
+		t.FailNow()
+	}
 }
