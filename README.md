@@ -1,0 +1,1 @@
+[Основано на статье](https://hackernoon.com/asyncawait-in-golang-an-introductory-guide-ol1e34sg) и исходный [репозиторий](https://github.com/Joker666/AsyncGoDemo)
